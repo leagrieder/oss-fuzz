@@ -30,6 +30,7 @@ RUN apt-get update && \
 RUN curl -LO http://mirrors.kernel.org/ubuntu/pool/main/a/automake-1.16/automake_1.16.5-1.3_all.deb && \
     apt install ./automake_1.16.5-1.3_all.deb
 RUN git clone --depth 1 https://gitlab.gnome.org/GNOME/libxml2.git
-RUN git -C libxml2 checkout v2.12.9
 WORKDIR libxml2
+# pin for CVE-2025-24928 demo
+RUN git checkout v2.12.9
 COPY build.sh $SRC/
